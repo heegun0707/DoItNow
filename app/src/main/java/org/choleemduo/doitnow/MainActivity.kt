@@ -21,7 +21,7 @@ class MainActivity : ComponentActivity() {
             DoItNowTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Hi DoItNow Project",
+                        name = "I want to leave the office",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
