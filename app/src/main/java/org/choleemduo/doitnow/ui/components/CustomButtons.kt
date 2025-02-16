@@ -18,10 +18,10 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun DefaultButtons(
-    onButtonClicked: () -> Unit,
     text: String,
     enabled: Boolean = true,
-    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() }
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    onButtonClicked: () -> Unit
 ) {
     val isPressed by interactionSource.collectIsPressedAsState()
     val colors = ButtonDefaults.buttonColors(
@@ -53,5 +53,5 @@ fun DefaultButtons(
 @Preview
 @Composable
 fun ButtonPreviews() {
-    DefaultButtons({}, "Label")
+    DefaultButtons("Label", onButtonClicked = {})
 }
