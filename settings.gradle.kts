@@ -21,4 +21,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "DoItNow"
 include(":app")
- 
+include(":data")
+include(":domain")
