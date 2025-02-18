@@ -22,7 +22,7 @@ fun SplashScreen() {
         contentAlignment = Alignment.Center
     ) {
         Icon(
-            painter = painterResource(R.drawable.article),
+            painter = painterResource(R.mipmap.ic_launcher),
             contentDescription = "splash icon",
             modifier = Modifier.size(80.dp)
         )

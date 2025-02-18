@@ -1,4 +1,10 @@
 <resources>
-    <string name="app_name">DoItNow</string>
-    <string name="test">Test</string>
+    <string name="app_name" translatable="false">DoItNow</string>
+    <string name="navigation_manage">Manage</string>
+    <string name="navigation_collection">Collection</string>
+    <string name="navigation_alarm">Alarm</string>
+    <string name="navigation_setting">Setting</string>
+    <string name="navigation_search">Search</string>
+    <string name="navigation_add">Add</string>
+    <string name="navigation_login">Login</string>
 </resources>
