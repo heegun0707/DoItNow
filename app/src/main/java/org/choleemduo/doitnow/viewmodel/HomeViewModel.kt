@@ -24,6 +24,7 @@ class HomeViewModel @Inject constructor(
                 .catch {
                     Timber.e("error: getAdvice()")
                 }.collect {
+                    Timber.d("advice: ${it.advice} ")
                     _advice.value = it.advice
                 }
         }

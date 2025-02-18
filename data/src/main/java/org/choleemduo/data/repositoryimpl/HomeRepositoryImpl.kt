@@ -4,9 +4,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import org.choleemduo.domain.model.AdviceEntity
 import org.choleemduo.domain.repository.HomeRepository
+import javax.inject.Inject
 import kotlin.random.Random
 
-class HomeRepositoryImpl: HomeRepository {
+class HomeRepositoryImpl @Inject constructor(): HomeRepository {
 
     // if you emit a single data or static data : flowOf()
 //    override suspend fun getAdvice(): Flow<AdviceEntity> {

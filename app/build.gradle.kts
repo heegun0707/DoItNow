@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.ksp)
+    id("kotlin-kapt")
 }
 
 android {
@@ -55,6 +56,7 @@ dependencies {
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
+    implementation(libs.androidx.material)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.lifecycle.viewmodel.compose)
     implementation(libs.navigation.compose)
@@ -69,7 +71,7 @@ dependencies {
 
     // DI(Hilt)
     implementation(libs.hilt.android)
-    ksp(libs.hilt.android.compiler)
+    kapt(libs.hilt.android.compiler)
 
     // Room
     implementation(libs.androidx.room.runtime)
@@ -87,6 +89,7 @@ dependencies {
 
     // Timber
     implementation (libs.timber)
+
     // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
