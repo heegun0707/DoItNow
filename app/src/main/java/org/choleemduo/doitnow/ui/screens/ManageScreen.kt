@@ -12,7 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import org.choleemduo.doitnow.ui.components.DefaultButtons
+import org.choleemduo.doitnow.ui.components.ButtonPreviews
+import org.choleemduo.doitnow.ui.components.PrimaryButton
 import org.choleemduo.doitnow.viewmodel.HomeViewModel
 
 @Composable
@@ -27,6 +28,7 @@ fun ManageScreen(homeViewModel: HomeViewModel) {
         ShowAdvice(advice) {
             homeViewModel.getAdvice()
         }
+        ButtonPreviews()
     }
 }
 
@@ -47,7 +49,7 @@ private fun ShowAdvice(
             fontSize = 24.sp
         )
 
-        DefaultButtons(
+        PrimaryButton(
             text = "Random",
             onButtonClicked = onChanged
         )
