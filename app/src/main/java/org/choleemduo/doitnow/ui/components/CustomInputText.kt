@@ -2,9 +2,7 @@ package org.choleemduo.doitnow.ui.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.focusable
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,8 +18,7 @@ import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.text.TextStyle
@@ -38,13 +35,11 @@ fun DefaultInputText(
     onTextChange: (String) -> Unit,
     modifier: Modifier
 ) {
-    val focusRequester = remember { FocusRequester() }
-    val interactionSource = remember { MutableInteractionSource() }
-    val isFocused by interactionSource.collectIsFocusedAsState()
+    var isFocused by remember { mutableStateOf(false) }
     val colorScheme = MaterialTheme.colorScheme
 
     Box(
-        modifier = modifier.clickable { focusRequester.requestFocus() }
+        modifier = modifier
     ) {
         Text(
             text = titleString,
@@ -60,8 +55,7 @@ fun DefaultInputText(
             modifier = Modifier
                 .align(Alignment.BottomStart)
                 .padding(start = 16.dp, bottom = 16.dp)
-                .focusRequester(focusRequester)
-                .focusable(interactionSource = interactionSource),
+                .onFocusChanged { focusState -> isFocused = focusState.isFocused },
             decorationBox = { innerTextField ->
                 Box(
                     modifier = Modifier.fillMaxWidth()
@@ -93,52 +87,48 @@ fun ErrorInputText(
     modifier: Modifier,
     error: Boolean = false
 ) {
-    val focusRequester = remember { FocusRequester() }
-    val interactionSource = remember { MutableInteractionSource() }
-    val isFocused by interactionSource.collectIsFocusedAsState()
+    var isFocused by remember { mutableStateOf(false) }
     val colorScheme = MaterialTheme.colorScheme
 
-    Box(
-        modifier = modifier.clickable { focusRequester.requestFocus() }
-    ) {
-        Column {
-            Box(modifier = Modifier.height(43.dp)){
-                BasicTextField(
-                    value = text,
-                    onValueChange = onTextChange,
-                    textStyle = TextStyle(fontSize = 16.sp, color = colorScheme.onSecondary),
-                    cursorBrush = SolidColor(colorScheme.onSecondary),
-                    modifier = Modifier
-                        .align(Alignment.CenterStart)
-                        .padding(start = 16.dp)
-                        .focusRequester(focusRequester)
-                        .focusable(interactionSource = interactionSource),
-                    decorationBox = { innerTextField ->
-                        if (text.isEmpty()) {
-                            Text(
-                                text = hintString,
-                                style = TextStyle(fontSize = 16.sp, color = colorScheme.tertiary)
-                            )
-                        }
-                        innerTextField()
+    Column(
+        modifier = modifier
+    )
+    {
+        Box(modifier = Modifier.height(43.dp).fillMaxWidth()) {
+            BasicTextField(
+                value = text,
+                onValueChange = onTextChange,
+                textStyle = TextStyle(fontSize = 16.sp, color = colorScheme.onSecondary),
+                cursorBrush = SolidColor(colorScheme.onSecondary),
+                modifier = Modifier
+                    .align(Alignment.CenterStart)
+                    .padding(start = 16.dp)
+                    .onFocusChanged { focusState -> isFocused = focusState.isFocused },
+                decorationBox = { innerTextField ->
+                    if (text.isEmpty()) {
+                        Text(
+                            text = hintString,
+                            style = TextStyle(fontSize = 16.sp, color = colorScheme.tertiary)
+                        )
                     }
-                )
-            }
-            HorizontalDivider(
-                color = colorScheme.run { if (isFocused) primary else onSecondary },
-                thickness = 1.dp,
-                modifier = Modifier.align(Alignment.Start)
+                    innerTextField()
+                }
             )
-            if (error && text.isEmpty()) {
-                Text(
-                    text = errorText,
-                    modifier = Modifier
-                        .align(Alignment.Start)
-                        .padding(start = 14.dp, top = 8.dp),
-                    fontSize = 10.sp,
-                    color = MaterialTheme.colorScheme.error
-                )
-            }
+        }
+        HorizontalDivider(
+            color = colorScheme.run { if (isFocused) primary else onSecondary },
+            thickness = 1.dp,
+            modifier = Modifier.align(Alignment.Start)
+        )
+        if (error && text.isEmpty()) {
+            Text(
+                text = errorText,
+                modifier = Modifier
+                    .align(Alignment.Start)
+                    .padding(start = 14.dp, top = 8.dp),
+                fontSize = 10.sp,
+                color = MaterialTheme.colorScheme.error
+            )
         }
     }
 }
@@ -155,8 +145,13 @@ fun ButtonInputText(
     val colorScheme = MaterialTheme.colorScheme
     Box(
         modifier = modifier
+            .clickable(
+                onClick = { onClick() },
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() },
+                enabled = enabled
+            )
             .padding(0.dp)
-            .clickable(enabled = enabled) { onClick() }
     ) {
         Text(
             text = titleString,
