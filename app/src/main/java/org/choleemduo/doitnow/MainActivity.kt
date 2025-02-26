@@ -124,7 +124,7 @@ class MainActivity : ComponentActivity() {
                     ManageScreen(homeViewModel)
                 }
                 composable(route = Screen.Collection.route) {
-                    CollectionScreen()
+                    CollectionScreen(this@MainActivity)
                 }
                 composable(route = Screen.Add.route) {
                     AddScreen()
