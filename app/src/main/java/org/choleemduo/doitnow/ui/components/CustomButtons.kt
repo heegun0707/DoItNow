@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun BaseButton(
     text: String,
+    modifier: Modifier = Modifier,
     isEnabled: Boolean,
     colors: ButtonColors,
     borderColor: Color? = null,
@@ -34,7 +35,9 @@ fun BaseButton(
 ) {
     Button(
         onClick = onButtonClicked,
-        modifier = Modifier.size(width = 235.dp, height = 48.dp),
+        modifier = Modifier
+            .size(width = 235.dp, height = 48.dp)
+            .then(modifier),
         enabled = isEnabled,
         shape = RoundedCornerShape(6.dp),
         border = borderColor?.let { BorderStroke(width = 1.dp, color = borderColor) },
@@ -51,6 +54,7 @@ fun BaseButton(
 @Composable
 fun PrimaryButton(
     text: String,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     onButtonClicked: () -> Unit
@@ -67,6 +71,7 @@ fun PrimaryButton(
 
     BaseButton(
         text = text,
+        modifier = modifier,
         isEnabled = enabled,
         colors = buttonColors,
         borderColor = buttonBorderColor,
@@ -78,6 +83,7 @@ fun PrimaryButton(
 @Composable
 fun PositiveButton(
     text: String,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     onButtonClicked: () -> Unit
@@ -94,6 +100,7 @@ fun PositiveButton(
 
     BaseButton(
         text = text,
+        modifier = modifier,
         isEnabled = enabled,
         colors = buttonColors,
         borderColor = buttonBorderColor,
@@ -105,6 +112,7 @@ fun PositiveButton(
 @Composable
 fun NegativeButton(
     text: String,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     onButtonClicked: () -> Unit
@@ -119,6 +127,7 @@ fun NegativeButton(
 
     BaseButton(
         text = text,
+        modifier = modifier,
         isEnabled = enabled,
         colors = buttonColors,
         interactionSource = interactionSource,
@@ -129,6 +138,7 @@ fun NegativeButton(
 @Composable
 fun ErrorButton(
     text: String,
+    modifier: Modifier = Modifier,
     enabled: Boolean = true,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     onButtonClicked: () -> Unit
@@ -145,6 +155,7 @@ fun ErrorButton(
 
     BaseButton(
         text = text,
+        modifier = modifier,
         isEnabled = enabled,
         colors = buttonColors,
         borderColor = buttonBorderColor,
