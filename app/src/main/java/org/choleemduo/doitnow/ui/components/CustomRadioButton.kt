@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.selection.selectable
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
@@ -59,7 +60,8 @@ fun BaseRadioButton(
                 )
                 Text(
                     text = text,
-                    modifier = Modifier.padding(start = 14.dp)
+                    modifier = Modifier.padding(start = 14.dp),
+                    style = MaterialTheme.typography.labelLarge
                 )
             }
         }

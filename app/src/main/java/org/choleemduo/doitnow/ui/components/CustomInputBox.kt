@@ -29,11 +29,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import org.choleemduo.doitnow.ui.theme.BlackText
 import org.choleemduo.doitnow.ui.theme.CursorColor
 
@@ -57,7 +55,7 @@ fun BaseOutlinedTextField(
             modifier = Modifier
                 .size(width = 235.dp, height = 56.dp)
                 .then(modifier),
-            textStyle = TextStyle(fontSize = 16.sp),
+            textStyle = MaterialTheme.typography.titleMedium,
             enabled = isEnabled,
             placeholder = {
                 Text(
@@ -110,7 +108,7 @@ fun BaseOutlinedTextField(
                 Text(
                     text = it,
                     modifier = Modifier.padding(top = 4.dp, start = 6.dp),
-                    fontSize = 10.sp,
+                    style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.error
                 )
             }

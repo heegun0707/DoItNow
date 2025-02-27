@@ -46,7 +46,7 @@ fun BaseButton(
     ) {
         Text(
             text = text,
-            fontSize = 16.sp
+            style = MaterialTheme.typography.labelMedium
         )
     }
 }
