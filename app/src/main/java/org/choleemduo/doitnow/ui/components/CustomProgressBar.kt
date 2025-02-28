@@ -7,7 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -106,7 +106,7 @@ fun ProgressBarPreviews() {
     var random by remember { mutableFloatStateOf(0f) }
     Column(
         modifier = Modifier
-            .wrapContentSize()
+            .wrapContentHeight()
             .background(MaterialTheme.colorScheme.background),
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
