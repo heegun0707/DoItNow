@@ -24,9 +24,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Fill
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.choleemduo.doitnow.ui.theme.BlackText
 import kotlin.random.Random
 
 @Composable
@@ -48,18 +50,18 @@ fun BaseProgressBar(
         leadingText?.let {
             Text(
                 text = leadingText,
-                modifier = Modifier
-                    .padding(start = 16.dp),
-                fontSize = 12.sp
+                modifier = Modifier.padding(start = 16.dp),
+                color = BlackText,
+                style = MaterialTheme.typography.bodyMedium
             )
         }
         trailingText?.let {
             Text(
                 text = trailingText,
                 modifier = Modifier
-                    .align(Alignment.CenterEnd)
-                    .padding(end = 16.dp),
-                fontSize = 12.sp
+                    .align(Alignment.CenterEnd).padding(end = 16.dp),
+                color = BlackText,
+                style = MaterialTheme.typography.bodyMedium
             )
         }
     }
@@ -114,7 +116,7 @@ fun ProgressBarPreviews() {
         val progress = (random * 10).toInt()
         BaseProgressBar(
             progressValue = random,
-            leadingText = "오늘 할 일을 ${progress * 100}% 완료했습니다.",
+            leadingText = "오늘 할 일을 ${progress * 10}% 완료했습니다.",
             trailingText = "$progress/10"
         )
 
