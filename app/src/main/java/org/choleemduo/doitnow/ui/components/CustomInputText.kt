@@ -30,15 +30,15 @@ import org.choleemduo.doitnow.ui.theme.DoItNowTheme
 
 @Composable
 fun ButtonInputText(
-    titleString: String = "",
-    hintString: String = "",
+    titleText: String = "",
+    hintText: String = "",
     text: String = "",
     modifier: Modifier,
     enabled: Boolean = true,
     onClick: () -> Unit
 ) {
     val colorScheme = MaterialTheme.colorScheme
-    Box(
+    Column (
         modifier = modifier
             .clickable(
                 onClick = { onClick() },
@@ -49,32 +49,32 @@ fun ButtonInputText(
             .padding(0.dp)
     ) {
         Text(
-            text = titleString,
+            text = titleText,
             modifier = Modifier
-                .align(Alignment.TopStart)
+                .align(Alignment.Start)
                 .padding(1.dp)
         )
         Text(
-            text = text.ifEmpty { hintString },
+            text = text.ifEmpty { hintText },
             fontSize = 12.sp,
             color = colorScheme.run { if (text.isEmpty()) tertiary else onSecondary },
             modifier = Modifier
-                .align(Alignment.BottomStart)
-                .padding(start = 16.dp, bottom = 16.dp)
+                .align(Alignment.Start)
+                .padding(start = 16.dp, top = 20.dp, bottom = 16.dp)
         )
         HorizontalDivider(
             color = colorScheme.onSecondary,
             thickness = 1.dp,
-            modifier = Modifier.align(Alignment.BottomStart)
+            modifier = Modifier.align(Alignment.Start)
         )
     }
 }
 
 @Composable
 fun BaseInputText(
-    titleString: String = "",
-    hintString: String = "",
-    text: String = "",
+    titleText: String? = null,
+    hintText: String? = null,
+    text: String,
     textSize: TextUnit = 12.sp,
     errorText: String? = null,
     onTextChange: (String) -> Unit,
@@ -86,9 +86,9 @@ fun BaseInputText(
     val colorScheme = MaterialTheme.colorScheme
 
     Column(modifier = modifier) {
-        if (titleString.isNotEmpty()) {
+        titleText?.let {
             Text(
-                text = titleString,
+                text = titleText,
                 modifier = Modifier
                     .padding(top = 1.dp, start = 1.dp),
                 color = if (isEnabled) colorScheme.onSecondary else colorScheme.tertiary
@@ -102,10 +102,12 @@ fun BaseInputText(
             textStyle = TextStyle(fontSize = textSize),
             enabled = isEnabled,
             placeholder = {
-                Text(
-                    text = hintString,
-                    style = TextStyle(fontSize = textSize, color = colorScheme.tertiary)
-                )
+                hintText?.let{
+                    Text(
+                        text = hintText,
+                        style = TextStyle(fontSize = textSize, color = colorScheme.tertiary)
+                    )
+                }
             },
             isError = isError,
             minLines = 1,
@@ -154,8 +156,8 @@ fun InputTextPreviews() {
                 .background(Color.White)
         ) {
             BaseInputText(
-                titleString = "타이틀",
-                hintString = "타이틀을 입력해주세요.",
+                titleText = "타이틀",
+                hintText = "타이틀을 입력해주세요.",
                 text = text,
                 textSize = 16.sp,
                 modifier = Modifier
