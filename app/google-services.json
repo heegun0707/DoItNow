@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "809632136591",
+    "project_id": "doitnow-ebd22",
+    "storage_bucket": "doitnow-ebd22.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:809632136591:android:99124f733d70cb59815ffa",
+        "android_client_info": {
+          "package_name": "org.choleemduo.doitnow"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB80h1WyiJF6_PqqkMo1cHnheppbt6hUOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
