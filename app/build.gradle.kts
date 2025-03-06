@@ -90,6 +90,9 @@ dependencies {
     // Timber
     implementation (libs.timber)
 
+    // Splash
+    implementation (libs.androidx.core.splashscreen)
+
     // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

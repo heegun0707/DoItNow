@@ -18,7 +18,7 @@ val BaseTextStyle = TextStyle(
     fontWeight = FontWeight.Normal
 )
 
-val Typography = Typography(
+val CustomTypography = Typography(
     displayLarge = BaseTextStyle.copy(
         fontSize = 24.sp,
         lineHeight = 36.sp
@@ -39,6 +39,7 @@ val Typography = Typography(
         fontSize = 10.sp
     ),
     labelLarge = BaseTextStyle.copy(
+        fontWeight = FontWeight.Bold,
         fontSize = 16.sp
     ),
     labelMedium = BaseTextStyle.copy(
