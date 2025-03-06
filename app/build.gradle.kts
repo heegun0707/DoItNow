@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.ksp)
     id("kotlin-kapt")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -92,6 +93,10 @@ dependencies {
 
     // Splash
     implementation (libs.androidx.core.splashscreen)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
     // Test
     testImplementation(libs.junit)
