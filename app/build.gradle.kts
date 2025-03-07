@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.google.services)
     id("kotlin-kapt")
 }
 
@@ -92,6 +93,10 @@ dependencies {
 
     // Splash
     implementation (libs.androidx.core.splashscreen)
+
+    // Firebase
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.analytics)
 
     // Test
     testImplementation(libs.junit)
