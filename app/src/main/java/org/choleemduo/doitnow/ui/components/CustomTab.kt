@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun DefaultTab(
+fun BaseTab(
     options: List<String>,
     selectedOption: String,
     modifier: Modifier,
@@ -57,7 +57,7 @@ fun DefaultTab(
 fun TabPreviews() {
     val options = listOf("매일", "매주", "매월", "매년")
     var selectedOption by remember { mutableStateOf(options[0]) }
-    DefaultTab(
+    BaseTab(
         options = options,
         selectedOption = selectedOption,
         modifier = Modifier
