@@ -23,7 +23,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.choleemduo.doitnow.ui.theme.DoItNowTheme
@@ -38,6 +37,7 @@ fun ButtonInputText(
     onClick: () -> Unit
 ) {
     val colorScheme = MaterialTheme.colorScheme
+    val typography = MaterialTheme.typography
     Column (
         modifier = modifier
             .clickable(
@@ -50,13 +50,14 @@ fun ButtonInputText(
     ) {
         Text(
             text = titleText,
+            style = typography.titleMedium,
             modifier = Modifier
                 .align(Alignment.Start)
                 .padding(1.dp)
         )
         Text(
             text = text.ifEmpty { hintText },
-            fontSize = 12.sp,
+            style = typography.bodyMedium,
             color = colorScheme.run { if (text.isEmpty()) tertiary else onSecondary },
             modifier = Modifier
                 .align(Alignment.Start)
@@ -75,7 +76,7 @@ fun BaseInputText(
     titleText: String? = null,
     hintText: String? = null,
     text: String,
-    textSize: TextUnit = 12.sp,
+    textStyle: TextStyle = MaterialTheme.typography.bodySmall,
     errorText: String? = null,
     onTextChange: (String) -> Unit,
     modifier: Modifier,
@@ -84,7 +85,6 @@ fun BaseInputText(
     maxLines: Int = 1
 ) {
     val colorScheme = MaterialTheme.colorScheme
-
     Column(modifier = modifier) {
         titleText?.let {
             Text(
@@ -99,13 +99,14 @@ fun BaseInputText(
             onValueChange = onTextChange,
             modifier = Modifier
                 .fillMaxWidth(),
-            textStyle = TextStyle(fontSize = textSize),
+            textStyle = textStyle,
             enabled = isEnabled,
             placeholder = {
                 hintText?.let{
                     Text(
                         text = hintText,
-                        style = TextStyle(fontSize = textSize, color = colorScheme.tertiary)
+                        style = textStyle,
+                        color = colorScheme.tertiary
                     )
                 }
             },
@@ -155,21 +156,16 @@ fun InputTextPreviews() {
                 .size(width = 412.dp, height = 917.dp)
                 .background(Color.White)
         ) {
-            BaseInputText(
+            ButtonInputText(
                 titleText = "타이틀",
                 hintText = "타이틀을 입력해주세요.",
                 text = text,
-                textSize = 16.sp,
                 modifier = Modifier
                     .width(width = 363.dp)
                     .wrapContentHeight()
                     .offset(y = 100.dp)
                     .align(Alignment.TopCenter),
-                onTextChange = { text = it },
-                errorText = "에러 메세지 입니다",
-                isEnabled = enabled,
-                isError = error,
-                maxLines = 3
+                onClick = {}
             )
         }
     }

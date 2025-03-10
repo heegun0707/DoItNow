@@ -34,7 +34,7 @@ import org.choleemduo.doitnow.R
 import org.choleemduo.doitnow.ui.theme.DoItNowTheme
 
 @Composable
-fun DefaultSpinner(
+fun BaseSpinner(
     text: String,
     textSize: TextUnit,
     centerSpacing: Dp,
@@ -87,7 +87,7 @@ fun DefaultSpinner(
 fun SpinnerPreviews() {
     var spinnerText by rememberSaveable { mutableStateOf("yyyy년 MM월 dd일 E요일") }
     DoItNowTheme {
-        DefaultSpinner(
+        BaseSpinner(
             text = spinnerText,
             textSize = 16.sp,
             centerSpacing = 2.dp,
