@@ -11,14 +11,15 @@ jetbrainsKotlinJvm = "2.0.0"
 navigationCompose = "2.8.6"
 viewModelCompose = "2.8.7"
 kotlinxCoroutines = "1.10.1"
-coreSplashscreen = "1.0.1"
 retrofit = "2.9.0"
 room = "2.6.1"
 workManager = "2.9.1"
 coil = "3.1.0"
 hilt = "2.51.1"
+hilt-navigation = "1.0.0"
 timber = "5.0.1"
 google-services = "4.4.2"
+kakaoUser = "2.20.6"
 
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -52,8 +53,9 @@ coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version
 converter-scalars = { module = "com.squareup.retrofit2:converter-scalars", version.ref = "retrofit" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 
-hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
+hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation" }
 
 javax-inject = { module = "javax.inject:javax.inject", version.ref = "inject" }
 
@@ -114,6 +116,9 @@ androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", versi
 # Firebase
 firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBom" }
 firebase-analytics = { module = "com.google.firebase:firebase-analytics" }
+
+# Kakao
+kakao-v2-user = { module = "com.kakao.sdk:v2-user", version.ref = "kakaoUser" }
 
 # Test
 junit = { group = "junit", name = "junit", version.ref = "junit" }

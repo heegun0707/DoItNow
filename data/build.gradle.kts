@@ -40,6 +40,9 @@ dependencies {
     implementation(libs.material)
     implementation(libs.javax.inject)
 
+    // Timber
+    implementation (libs.timber)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

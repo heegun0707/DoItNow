@@ -7,4 +7,12 @@
     <string name="navigation_search">Search</string>
     <string name="navigation_add">Add</string>
     <string name="navigation_login">Login</string>
+
+    <string name="kakao_login">Continue Kakao</string>
+    <string name="google_login">Continue Google</string>
+    <string name="logout">Logout</string>
+    <string name="login_success">Login Success</string>
+    <string name="login_fail">Login Fail</string>
+    <string name="logout_success">Logout Success</string>
+    <string name="logout_fail">Logout Fail</string>
 </resources>

@@ -1,3 +1,6 @@
+import java.util.Properties
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -24,11 +27,15 @@ android {
 
     buildTypes {
         release {
+            buildConfigField("String", "KAKAO_APP_KEY", getApiKey("kakao.app.key"))
             isMinifyEnabled = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            buildConfigField("String", "KAKAO_APP_KEY", getApiKey("kakao.app.key"))
         }
     }
     compileOptions {
@@ -40,7 +47,12 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
+}
+
+fun getApiKey(propertyKey: String): String {
+    return gradleLocalProperties(rootDir, providers).getProperty(propertyKey)
 }
 
 dependencies {
@@ -72,6 +84,7 @@ dependencies {
 
     // DI(Hilt)
     implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
     kapt(libs.hilt.android.compiler)
 
     // Room
@@ -97,6 +110,9 @@ dependencies {
     // Firebase
     implementation(platform(libs.firebase.bom))
     implementation(libs.firebase.analytics)
+
+    // Kakao Login
+    implementation (libs.kakao.v2.user)
 
     // Test
     testImplementation(libs.junit)

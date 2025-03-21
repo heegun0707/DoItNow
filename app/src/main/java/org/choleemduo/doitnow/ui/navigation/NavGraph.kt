@@ -1,9 +1,10 @@
 package org.choleemduo.doitnow.ui.navigation
 
+import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -14,33 +15,36 @@ import org.choleemduo.doitnow.ui.screens.CollectionScreen
 import org.choleemduo.doitnow.ui.screens.LoginScreen
 import org.choleemduo.doitnow.ui.screens.ManageScreen
 import org.choleemduo.doitnow.ui.screens.SettingScreen
+import org.choleemduo.doitnow.viewmodel.AuthenticationViewModel
 import org.choleemduo.doitnow.viewmodel.HomeViewModel
+import org.choleemduo.domain.manager.AuthState
 
 @Composable
 fun MainNavHost(
     modifier: Modifier,
     navController: NavHostController,
-    isLoggedIn: Boolean,
-    onLogStatus: () -> Unit,
+    viewModel: AuthenticationViewModel,
+    authState: AuthState
 ) {
+    val context = LocalContext.current
     NavHost(
         modifier = modifier,
         navController = navController,
-        startDestination = if (isLoggedIn) Screen.Manage.route else Screen.Login.route
+        startDestination = if (authState is AuthState.LoginSuccess) Screen.Manage.route else Screen.Login.route
     ) {
         composable(route = Screen.Login.route) {
-            LoginScreen(onClicked = {
-                onLogStatus()
+            LoginScreen(viewModel)
+            if (authState is AuthState.LoginSuccess) {
                 navController.navigate(Screen.Manage.route) {
                     popUpTo(navController.graph.findStartDestination().id) {
                         inclusive = true
                     }
                 }
-            })
+            }
         }
         composable(route = Screen.Manage.route) {
-            val viewModel: HomeViewModel = viewModel()
-            ManageScreen(viewModel)
+            val homeViewModel: HomeViewModel = hiltViewModel()
+            ManageScreen(homeViewModel)
         }
         composable(route = Screen.Collection.route) {
             CollectionScreen(LocalContext.current)
@@ -52,7 +56,16 @@ fun MainNavHost(
             AlarmScreen()
         }
         composable(route = Screen.Setting.route) {
-            SettingScreen()
+            SettingScreen(viewModel)
+            if (authState == AuthState.LogoutSuccess) {
+                Toast.makeText(context, "로그아웃 성공", Toast.LENGTH_SHORT).show()
+
+                navController.navigate(Screen.Login.route) {
+                    popUpTo(navController.graph.findStartDestination().id) {
+                        inclusive = true
+                    }
+                }
+            }
         }
     }
 }
